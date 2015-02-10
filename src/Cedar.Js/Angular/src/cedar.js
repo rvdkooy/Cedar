@@ -37,8 +37,11 @@ var cedarJs = angular.module("cedar.js", [])
 
         function sendCommand(command, callback) {
             _rootScope.$broadcast('commandSending', command);
+            
+             var prefix = _options.routePrefix || '';
+
             _http.put(
-                'commands/' + command.commandId,
+                prefix + 'commands/' + command.commandId,
                 command, {
                     headers: {
                         'content-type': 'application/vnd.' + _options.namespace + '.' +
