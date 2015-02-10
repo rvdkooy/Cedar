@@ -13,8 +13,6 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            //'./eVision.IdentityManagement/WebUI/vendor/vendorScripts.js',
-            //'./eVision.IdentityManagement/scripts/fn-angular-mocks.js',
             './node_modules/angular/angular.js',
             './node_modules/angular-mocks/angular-mocks.js',
             './angular/src/**/*.js',
@@ -28,7 +26,6 @@ module.exports = function (config) {
         plugins: [
             'karma-jasmine',
             'karma-phantomjs-launcher'
-            //require('./karma-teamcity-reporter')
         ],
 
         // test results reporter to use

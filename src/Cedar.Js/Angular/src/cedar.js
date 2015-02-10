@@ -18,13 +18,11 @@ var cedarJs = angular.module("cedar.js", [])
                 _http = $http;
                 _rootScope = $rootScope;
 
-                function execute(command, dependingResource) {
+                function execute(command, deferred) {
 
                     var deferred = _q.defer();
 
-                    sendCommand(command, function(data){
-                        deferred.resolve(data);
-                    });
+                    sendCommand(command, deferred);
                     
                     return deferred.promise;
                 }
@@ -35,7 +33,7 @@ var cedarJs = angular.module("cedar.js", [])
             }
         };
 
-        function sendCommand(command, callback) {
+        function sendCommand(command, deferred) {
             _rootScope.$broadcast('commandSending', command);
             
              var prefix = _options.routePrefix || '';
@@ -51,7 +49,7 @@ var cedarJs = angular.module("cedar.js", [])
                 })
             .success(function(data) {
                 
-                callback(data);
+                deferred.resolve(data);
 
                 _rootScope.$broadcast('commandSent', command);
             })
